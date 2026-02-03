@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+    font-size: 11pt;
+}
+
+.resume-container {
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.5in 0.5in;
+    background: white;
+}
+
+/* Header */
+.resume-header {
+    text-align: center;
+    margin-bottom: 0.625rem;
+}
+
+.profile-image {
+    width: 9.375rem;
+    height: 9.375rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    display: block;
+    border: 0.1875rem solid #000;
+}
+
+.tech-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.625rem 0;
+    flex-wrap: wrap;
+}
+
+.tech-icons img {
+    width: 2rem;
+    height: 2rem;
+    transition: transform 0.2s;
+}
+
+.tech-icons img:hover {
+    transform: scale(1.2);
+}
+
+.name {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.0625rem;
+    margin-bottom: 0.3125rem;
+}
+
+.contact-info {
+    font-size: 0.875rem;
+    color: #000;
+}
+
+.contact-info a {
+    color: #0000EE;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.separator {
+    margin: 0 0.5rem;
+    color: #000;
+}
+
+/* Sections */
+.resume-section {
+    margin-bottom: 0.75rem;
+}
+
+.section-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.03125rem;
+    margin-bottom: 0.125rem;
+}
+
+.section-line {
+    height: 0.0625rem;
+    background: #000;
+    margin-bottom: 0.5rem;
+}
+
+/* Resume Items */
+.resume-item {
+    margin-bottom: 0.625rem;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.125rem;
+}
+
+.item-subheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.3125rem;
+}
+
+.item-left {
+    flex: 1;
+}
+
+.item-right {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.tech-stack {
+    font-weight: 400;
+    color: #000;
+}
+
+.item-details {
+    margin-left: 1.25rem;
+    margin-top: 0.1875rem;
+}
+
+.item-details li {
+    margin-bottom: 0.1875rem;
+    line-height: 1.4;
+}
+
+/* Skills */
+.skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1875rem;
+}
+
+.skill-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.skill-row strong {
+    min-width: 6.25rem;
+    font-weight: 700;
+}
+
+/* Contact Form */
+.contact-form {
+    max-width: 37.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9375rem;
+    margin-bottom: 0.9375rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.9375rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 0.3125rem;
+    font-size: 0.875rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.5rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.1875rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #0000EE;
+}
+
+.submit-btn {
+    background: #000;
+    color: white;
+    padding: 0.625rem 1.5625rem;
+    border: none;
+    border-radius: 0.1875rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #333;
+}
+
+#form-message {
+    margin-top: 0.625rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+#form-message.success {
+    color: #28a745;
+}
+
+#form-message.error {
+    color: #dc3545;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .resume-container {
+        margin: 0;
+        padding: 0.5in;
+        max-width: 100%;
+    }
+    
+    .contact-info a {
+        color: #0000EE;
+        text-decoration: none;
+    }
+    
+    .resume-section {
+        page-break-inside: avoid;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 48rem) {
+    .resume-container {
+        padding: 1.25rem 0.9375rem;
+    }
+    
+    .profile-image {
+        width: 7.5rem;
+        height: 7.5rem;
+    }
+    
+    .tech-icons img {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    
+    .name {
+        font-size: 1.667rem;
+    }
+    
+    .contact-info {
+        font-size: 0.75rem;
+        line-height: 1.6;
+    }
+    
+    .separator {
+        display: none;
+    }
+    
+    .contact-info a {
+        display: block;
+        margin: 0.1875rem 0;
+    }
+    
+    .item-header,
+    .item-subheader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .item-right {
+        text-align: left;
+        margin-top: 0.125rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #f0f0f0;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    color: #000;
+}
