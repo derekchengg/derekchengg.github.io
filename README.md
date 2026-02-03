@@ -43,3 +43,7 @@ The visualization was created using techniques learned from:
 - **Staggered Animations**: [CSS-Tricks: Staggering Animations](https://css-tricks.com/staggering-animations/)
 - **Math.max with Spread**: [Stack Overflow: How does Math.max.apply work?](https://stackoverflow.com/questions/21255138/how-does-the-math-max-apply-work)
 - **SVG Animation**: [Stack Overflow: Animated bars growing upwards](https://stackoverflow.com/questions/11815207/how-do-i-make-a-bar-chart-in-svg-have-animated-bars-growing-upwards)
+
+## AI Assistance
+- Constructing README
+- Understanding Javascript animation for bar chart
