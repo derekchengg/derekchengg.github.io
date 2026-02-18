@@ -1,0 +1,96 @@
+p {
+    margin-top: 0.625rem;
+    font-size: 0.875rem;
+}
+
+.vis-page-container {
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.5in 0.2in;
+    background: white;
+}
+
+.vis-header {
+    text-align: center;
+    margin-bottom: 0.625rem;
+}
+
+.viz-container {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border: 0.0625rem solid #ddd;
+    background: #fafafa;
+}
+
+.viz-title {
+    font-size: 1.167rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #000;
+    letter-spacing: 0.03125rem;
+}
+
+.viz-description {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 0.875rem;
+}
+
+svg {
+    display: block;
+    margin: 1rem auto;
+    border: 0.0625rem solid #ccc;
+    background: white;
+}
+
+.controls {
+    margin: 1rem 0;
+    display: flex;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+}
+
+.controls button {
+    background: #000;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.1875rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.controls button:hover {
+    background: #333;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #0000EE;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 48rem) {
+    .vis-page-container {
+        padding: 1.25rem 0.9375rem;
+    }
+    
+    .viz-container {
+        padding: 1rem;
+    }
+    
+    svg {
+        max-width: 100%;
+        height: auto;
+    }
+}

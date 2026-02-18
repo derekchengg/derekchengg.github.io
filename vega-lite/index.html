@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video Game Sales Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@5.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.34.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      const options = {
+        config: {
+          // Vega-Lite default configuration
+        },
+        init: (view) => {
+          // initialize tooltip handler
+          view.tooltip(new vegaTooltip.Handler().call);
+        },
+        view: {
+          // view constructor options
+          // remove the loader if you don't want to default to vega-datasets!
+          loader: vega.loader({
+            baseURL: "https://cdn.jsdelivr.net/npm/vega-datasets@2/",
+          }),
+          renderer: "canvas",
+        },
+      };
+
+      // register vega and vega-lite with the API
+      vl.register(vega, vegaLite, options);
+    </script>
+  </head>
+  <body>
+    <a href="../index.html" class="back-link">← Back to Home</a>
+    <div class="header">
+      <h1>Data Exploration: Video Game Sales</h1>
+    </div>
+
+    <div class="container">
+
+      <section>
+        <h2>1. Global Sales by Genre and Platform</h2>
+        <p class="question">What genre made each console the most money?</p>
+        <div id="vis1" class="chart-container"></div>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2>2. Sales Over Time by Platform and Genre</h2>
+        <p class="question">Was the 2008 gaming boom driven by one genre, or did
+          the whole industry rise together?</p>
+        <div id="vis2" class="chart-container"></div>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2>3. Regional Sales vs. Platform</h2>
+        <p class="question">Do Nintendo games sell better in Japan than in North
+          America compared to other publishers?</p>
+        <div id="vis3" class="chart-container"></div>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2>4. Publisher Story</h2>
+        <p class="question">How did the top publishers' annual sales change from
+          1990 to 2016?</p>
+        <div id="vis4" class="chart-container"></div>
+      </section>
+
+    </div>
+
+    <script type="module" src="vis.js"></script>
+  </body>
+</html>
