@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive D3 Shapes</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f5f0e8;
+      color: #4a4035;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 6px;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      color: #7a6a55;
+    }
+
+    p.subtitle {
+      font-size: 0.85rem;
+      color: #9a8a75;
+      margin-bottom: 14px;
+    }
+
+    #hud {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    #counter {
+      font-size: 0.9rem;
+      color: #8a7a65;
+    }
+
+    #counter span {
+      color: #c07850;
+      font-weight: bold;
+    }
+
+    button {
+      background: #e8ddd0;
+      border: 1px solid #c0aa90;
+      color: #6a5a45;
+      padding: 5px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    button:hover { background: #ddd0c0; }
+
+    #canvas {
+      cursor: crosshair;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #c0aa90;
+      box-shadow: 0 4px 24px #a08060a0;
+    }
+
+    svg {
+      display: block;
+    }
+
+    #hint {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: #b0a090;
+    }
+  </style>
+</head>
+<body>
+  <h1>Polygon Clicker</h1>
+  <p class="subtitle">Click anywhere to add shapes or click a shape to remove it</p>
+
+  <div id="hud">
+    <div id="counter">Shapes: <span id="shapeCount">0</span> / 20</div>
+    <div id="counter">Next: <span id="nextShape">Circle</span></div>
+    <button id="clearBtn">Clear All</button>
+  </div>
+
+  <div id="canvas"></div>
+  
+  <script type="module" src="script.js"></script>
+</body>
+</html>
