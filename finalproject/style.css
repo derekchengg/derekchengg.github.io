@@ -20,7 +20,10 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background: linear-gradient(to bottom, #1a0000, #0a0000 60%, #0f0f0f);
+  /* Use a linear gradient as a dark overlay to drop the image opacity and make text readable */
+  background: linear-gradient(rgba(10, 0, 0, 0.7), rgba(15, 15, 15, 0.95)), 
+              url('../images/alabasta.jpg') no-repeat center center;
+  background-size: cover;
 }
 
 .hero-content {
