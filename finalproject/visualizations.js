@@ -1,6 +1,7 @@
 // Data: https://api.api-onepiece.com/v2/characters/en
 
-const API_URL = 'https://api.api-onepiece.com/v2/characters/en';
+const API_URL   = 'https://api.api-onepiece.com/v2/characters/en';
+const HAKI_URL  = 'https://api.api-onepiece.com/v2/hakis/en/character';
 const RED     = '#cc2200';
 const CREAM   = '#aaaaaa';
 const BG      = '#1a1a1a';
@@ -31,19 +32,9 @@ function getCrewName(c) {
 }
 
 function getHaki(c) {
-  const h = c.haki || {};
-  if (Array.isArray(h)) {
-    return {
-      observation: h.some(x => /obs|ken/i.test(x)),
-      armament:    h.some(x => /arm|buso/i.test(x)),
-      conquerors:  h.some(x => /con|hao|king/i.test(x))
-    };
-  }
-  return {
-    observation: !!(h.observation || h.kenbunshoku || h.obs),
-    armament:    !!(h.armament    || h.busoshoku   || h.arm),
-    conquerors:  !!(h.conquerors  || h.haoshoku    || h.con || h.king)
-  };
+  // Populated by fetchHakiData() using /v2/hakis/en/character/{id}
+  // haki ids: 1=Observation, 2=Weaponry (Armament), 3=Haki of Kings (Conqueror's)
+  return c._haki || { observation: false, armament: false, conquerors: false };
 }
 
 function fmtBounty(v) {
@@ -57,6 +48,26 @@ function visWidth(el) {
 }
 
 // ── Fetch ─────────────────────────────────────────────────────────────────────
+
+// Fetches haki types for all chars that have a bounty, in parallel.
+// Attaches result as c._haki = { observation, armament, conquerors } on each char.
+async function fetchHakiData(chars) {
+  const targets = chars.filter(c => parseBounty(c.bounty) > 0);
+  await Promise.all(
+    targets.map(async c => {
+      try {
+        const res = await fetch(`${HAKI_URL}/${c.id}`);
+        if (!res.ok) return;
+        const hakis = await res.json();
+        c._haki = {
+          observation: hakis.some(h => h.haki.id === 1),
+          armament:    hakis.some(h => h.haki.id === 2),
+          conquerors:  hakis.some(h => h.haki.id === 3),
+        };
+      } catch { /* leave _haki undefined */ }
+    })
+  );
+}
 
 async function fetchAllCharacters() {
   const limit = 100;
@@ -576,7 +587,7 @@ function wireFilters(chars) {
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 (async function main() {
-  // vis5 is hardcoded — render it immediately, no API needed
+  // vis5 is hardcoded — render immediately, no API needed
   drawVis5();
 
   ['vis1', 'vis2', 'vis3', 'vis4'].forEach(id => {
@@ -592,10 +603,15 @@ function wireFilters(chars) {
     return;
   }
 
+  // Draw non-haki charts immediately with character data
   drawVis1(chars);
   drawVis2(chars);
-  drawVis3(chars);
   drawVis4(chars);
+
+  // Fetch haki in parallel for all bounty-having chars, then draw vis3
+  document.getElementById('vis3').textContent = 'Loading haki data…';
+  await fetchHakiData(chars);
+  drawVis3(chars);
 
   wireFilters(chars);
 })();
