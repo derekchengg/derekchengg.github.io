@@ -109,8 +109,14 @@ function drawVis5(filter = "all") {
     .y((d) => y(d))
     .curve(d3.curveMonotoneX);
 
+  // Block hover interactions until the draw animation finishes
+  let animating = true;
+  const totalAnimDuration = T.path + (series.length - 1) * 70;
+  setTimeout(() => { animating = false; }, totalAnimDuration);
+
   // Isolate / reset helpers (shared by line hover and legend hover)
   function isolate(safeId) {
+    if (animating) return;
     g.selectAll(".line")
       .transition()
       .duration(T.hover)
@@ -133,6 +139,7 @@ function drawVis5(filter = "all") {
       .attr("r", 5);
   }
   function resetAll() {
+    if (animating) return;
     g.selectAll(".line")
       .transition()
       .duration(T.hover)
