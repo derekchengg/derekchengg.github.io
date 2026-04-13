@@ -1,196 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IAT 355 Bounty Analysis</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAT 355 Bounty Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  </head>
+  <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-dark fixed-top px-4" style="background:rgba(10,10,10,0.95);">
-    <span class="navbar-brand fw-bold text-uppercase small">IAT 355 Bounty Analysis</span>
-    <ul class="nav d-none d-md-flex gap-3">
-      <li><a class="nav-link text-secondary small text-uppercase" href="#s1">Bounties</a></li>
-      <li><a class="nav-link text-secondary small text-uppercase" href="#s2">Devil Fruits</a></li>
-      <li><a class="nav-link text-secondary small text-uppercase" href="#s3">Haki</a></li>
-      <li><a class="nav-link text-secondary small text-uppercase" href="#s4">Crews</a></li>
-      <li><a class="nav-link text-secondary small text-uppercase" href="#s5">Timeline</a></li>
-    </ul>
-  </nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark fixed-top px-4"
+      style="background:rgba(10,10,10,0.94);">
+      <span class="navbar-brand fw-bold text-uppercase small">IAT 355 Bounty
+        Analysis</span>
+      <ul class="nav d-none d-md-flex gap-3">
+        <li><a class="nav-link text-secondary small text-uppercase"
+            href="#s1">Bounties</a></li>
+        <li><a class="nav-link text-secondary small text-uppercase"
+            href="#s2">Devil Fruits</a></li>
+        <li><a class="nav-link text-secondary small text-uppercase"
+            href="#s3">Haki</a></li>
+        <li><a class="nav-link text-secondary small text-uppercase"
+            href="#s4">Crews</a></li>
+        <li><a class="nav-link text-secondary small text-uppercase"
+            href="#s5">Timeline</a></li>
+        <li><a class="nav-link text-secondary small text-uppercase"
+            href="#s6">Calculator</a></li>
+      </ul>
+    </nav>
 
-  <!-- Hero -->
-  <header class="hero px-3">
-    <div class="hero-content">
-      <p class="text-secondary text-uppercase small mb-3">The One Piece Is Real</p>
-      <h1 class="hero-title text-white text-uppercase">One Piece</h1>
-      <h2 class="hero-subtitle text-uppercase mb-3">Bounty Analysis</h2>
-      <p class="text-secondary mb-4" style="max-width:480px;margin:0 auto 1.5rem;">
-        Investigating how Devil Fruits, Haki mastery, and crew affiliation influence pirate bounties.
-      </p>
-      <p class="text-secondary small">Nathan Wong · Derek Cheng · Ryan Chuang</p>
-    </div>
-
-    <!-- Stats pinned to bottom of hero -->
-    <div class="stats-bar">
-      <div class="row text-center g-0">
-        <div class="col py-3">
-          <div class="fw-bold fs-3">50</div>
-          <div class="text-secondary text-uppercase small">Characters</div>
-        </div>
-        <div class="col py-3">
-          <div class="fw-bold fs-3">31</div>
-          <div class="text-secondary text-uppercase small">Devil Fruit Users</div>
-        </div>
-        <div class="col py-3">
-          <div class="fw-bold fs-3">19</div>
-          <div class="text-secondary text-uppercase small">Non-Fruit Users</div>
-        </div>
-        <div class="col py-3">
-          <div class="fw-bold fs-3">5.564B</div>
-          <div class="text-secondary text-uppercase small">Highest Bounty</div>
+    <!-- Hero -->
+    <header class="hero px-3">
+      <div class="hero-content">
+        <p class="text-secondary text-uppercase small mb-3"
+          style="letter-spacing:0.12em">The One Piece Is Real</p>
+        <h1 class="hero-title text-white text-uppercase">One Piece</h1>
+        <h2 class="hero-subtitle text-uppercase mb-3">Bounty Analysis</h2>
+        <p class="text-secondary mb-4"
+          style="max-width:480px;margin:0 auto 1.5rem;line-height:1.7">
+          Investigating how Devil Fruits, Haki mastery, and crew affiliation
+          influence pirate bounties.
+        </p>
+        <p class="text-secondary small">Nathan Wong · Derek Cheng · Ryan
+          Chuang</p>
       </div>
-      </div>
-    </div>
-  </header>
 
-  <!-- Sections -->
-  <main class="container-lg py-5">
-
-    <!-- 01 -->
-    <section id="s1" class="mb-5">
-      <p class="text-uppercase small mb-1" style="color:var(--red)">Bounty of Criminals</p>
-      <div class="d-flex align-items-baseline gap-3 mb-2">
-        <span class="section-num">01</span>
-        <h2 class="h3 fw-bold mb-0">Top 15 Highest Bounties</h2>
-      </div>
-      <p class="text-secondary mb-3" style="max-width:640px">
-        <strong class="text-white">What is a Bounty?</strong> A reward issued by the World Government for
-        the capture or death of a criminal. Bounty amounts reflect a pirate's perceived threat level
-        shaped by their power, infamy, and the chaos they've caused.
-      </p>
-      <div class="bg-dark border border-secondary rounded p-3">
-        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-          <span class="text-secondary text-uppercase small fw-bold" id="lbl-s1">Horizontal Bar Chart</span>
-          <div class="d-flex gap-2 flex-wrap">
-            <button class="btn btn-sm btn-outline-secondary btn-filter active" data-vis="vis1" data-label="All characters, top 15" data-chart="Horizontal Bar Chart">All</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis1" data-label="Devil Fruit users only, top 15" data-chart="Horizontal Bar Chart">DF Only</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis1" data-label="Non-Devil Fruit users only, top 15" data-chart="Horizontal Bar Chart">Non-DF Only</button>
+      <div class="stats-bar">
+        <div class="row text-center g-0">
+          <div class="col py-3">
+            <div class="fw-bold fs-3">50</div>
+            <div class="text-secondary text-uppercase small"
+              style="letter-spacing:0.06em">Characters</div>
+          </div>
+          <div class="col py-3">
+            <div class="fw-bold fs-3">31</div>
+            <div class="text-secondary text-uppercase small"
+              style="letter-spacing:0.06em">Devil Fruit Users</div>
+          </div>
+          <div class="col py-3">
+            <div class="fw-bold fs-3">19</div>
+            <div class="text-secondary text-uppercase small"
+              style="letter-spacing:0.06em">Non-Fruit Users</div>
+          </div>
+          <div class="col py-3">
+            <div class="fw-bold fs-3">5.564B</div>
+            <div class="text-secondary text-uppercase small"
+              style="letter-spacing:0.06em">Highest Bounty</div>
           </div>
         </div>
-        <div class="vis-box" id="vis1">All characters, top 15</div>
       </div>
-    </section>
+    </header>
 
-    <!-- 02 -->
-    <section id="s2" class="mb-5">
-      <p class="text-uppercase small mb-1" style="color:var(--red)">Fruit Taxonomy</p>
-      <div class="d-flex align-items-baseline gap-3 mb-2">
-        <span class="section-num">02</span>
-        <h2 class="h3 fw-bold mb-0">Devil Fruit Type Distribution</h2>
-      </div>
-      <p class="text-secondary mb-3" style="max-width:640px">
-        <strong class="text-white">What are Devil Fruits?</strong> Mysterious fruits granting supernatural
-        abilities at the cost of swimming. Three categories: Paramecia (body-altering), Zoan (animal
-        transformation), and Logia (elemental control).
-      </p>
-      <div class="bg-dark border border-secondary rounded p-3">
-        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-          <span class="text-secondary text-uppercase small fw-bold" id="lbl-s2">Treemap</span>
-          <div class="d-flex gap-2 flex-wrap">
-            <button class="btn btn-sm btn-outline-secondary btn-filter active" data-vis="vis2" data-label="All fruit types by average bounty" data-chart="Treemap">All Types</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis2" data-label="Paramecia fruits only" data-chart="Treemap">Paramecia</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis2" data-label="Zoan fruits only" data-chart="Treemap">Zoan</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis2" data-label="Logia fruits only" data-chart="Treemap">Logia</button>
-          </div>
+    <!-- Sections -->
+    <main class="container-lg py-5">
+
+      <!-- 01 Top Bounties -->
+      <section id="s1" class="mb-5">
+        <p class="text-uppercase small mb-1"
+          style="color:var(--red);letter-spacing:0.1em">Bounty of Criminals</p>
+        <div class="d-flex align-items-baseline gap-3 mb-2">
+          <span class="section-num">01</span>
+          <h2 class="h3 fw-bold mb-0">Top 15 Highest Bounties</h2>
         </div>
-        <div class="vis-box" id="vis2">All fruit types by average bounty</div>
-      </div>
-    </section>
-
-    <!-- 03 -->
-    <section id="s3" class="mb-5">
-      <p class="text-uppercase small mb-1" style="color:var(--red)">Haki Status &amp; Overlap</p>
-      <div class="d-flex align-items-baseline gap-3 mb-2">
-        <span class="section-num">03</span>
-        <h2 class="h3 fw-bold mb-0">Haki Type Overlap &amp; Bounty</h2>
-      </div>
-      <p class="text-secondary mb-3" style="max-width:640px">
-        <strong class="text-white">What is Haki?</strong> A universal power in three forms: Observation
-        (sensing intent), Armament (invisible armor), and Conqueror's (overwhelming weaker wills rare,
-        a mark of true greatness). Multi-type users consistently hold the highest bounties.
-      </p>
-      <div class="bg-dark border border-secondary rounded p-3">
-        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-          <span class="text-secondary text-uppercase small fw-bold" id="lbl-s3">Venn Diagram</span>
-          <div class="d-flex gap-2 flex-wrap">
-            <button class="btn btn-sm btn-outline-secondary btn-filter active" data-vis="vis3" data-label="All Haki combinations" data-chart="Venn Diagram">All Haki</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis3" data-label="Observation Haki users only" data-chart="Venn Diagram">Observation</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis3" data-label="Armament Haki users only" data-chart="Venn Diagram">Armament</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis3" data-label="Conqueror's Haki users only" data-chart="Venn Diagram">Conqueror's</button>
+        <p class="text-secondary mb-3" style="max-width:640px;line-height:1.7">
+          <strong class="text-white">What is a Bounty?</strong> <br> A reward issued
+          by the World Government for
+          the capture or death of a criminal. Amounts reflect a pirate's
+          perceived threat level
+          shaped by power, infamy, and the chaos they've caused.
+        </p>
+        <div class="chart-card">
+          <div
+            class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <span class="chart-label" id="lbl-s1">Horizontal Bar Chart</span>
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn btn-sm btn-outline-secondary btn-filter active"
+                data-vis="vis1" data-label="All characters, top 15"
+                data-chart="Horizontal Bar Chart">All</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis1" data-label="Devil Fruit users only, top 15"
+                data-chart="Horizontal Bar Chart">Devil Fruit Only</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis1" data-label="Non-Devil Fruit users only, top 15"
+                data-chart="Horizontal Bar Chart">Non-Devil Fruit Only</button>
+            </div>
           </div>
+          <div class="vis-box" id="vis1"></div>
         </div>
-        <div class="vis-box" id="vis3">All Haki combinations</div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 04 -->
-    <section id="s4" class="mb-5">
-      <p class="text-uppercase small mb-1" style="color:var(--red)">Pirate Fleet</p>
-      <div class="d-flex align-items-baseline gap-3 mb-2">
-        <span class="section-num">04</span>
-        <h2 class="h3 fw-bold mb-0">Crew Affiliation &amp; Bounty</h2>
-      </div>
-      <p class="text-secondary mb-3" style="max-width:640px">
-        <strong class="text-white">What are Pirate Crews?</strong> Pirates operate in crews united under
-        a captain. This chart compares average bounty per crew member, revealing which fleets punch above
-        their weight.
-      </p>
-      <div class="bg-dark border border-secondary rounded p-3">
-        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-          <span class="text-secondary text-uppercase small fw-bold" id="lbl-s4">Bubble Chart</span>
-          <div class="d-flex gap-2 flex-wrap">
-            <button class="btn btn-sm btn-outline-secondary btn-filter active" data-vis="vis4" data-label="All crews by average bounty" data-chart="Bubble Chart">All Crews</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis4" data-label="DF-heavy crews highlighted" data-chart="Bubble Chart">DF-Heavy</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis4" data-label="Non-DF dominant crews highlighted" data-chart="Bubble Chart">Non-DF</button>
+      <!-- 02 Devil Fruit Distribution -->
+      <section id="s2" class="mb-5">
+        <p class="text-uppercase small mb-1"
+          style="color:var(--red);letter-spacing:0.1em">Fruit Taxonomy</p>
+        <div class="d-flex align-items-baseline gap-3 mb-2">
+          <span class="section-num">02</span>
+          <h2 class="h3 fw-bold mb-0">Devil Fruit Type Distribution</h2>
+        </div>
+        <p class="text-secondary mb-3" style="max-width:640px;line-height:1.7">
+          <strong class="text-white">What are Devil Fruits?</strong><br> Mysterious
+          fruits granting supernatural abilities at the cost of swimming.
+          <strong class="text-white">Paramecia</strong> alter the body or environment.
+          <strong class="text-white">Logia</strong> grant elemental control.
+          <strong class="text-white">Zoan</strong> allow animal transformation, including
+          <strong class="text-white">Zoan Antique</strong> (ancient/prehistoric creatures)
+          and <strong class="text-white">Zoan Mythique</strong> (mythological beings with
+          vastly amplified power).
+        </p>
+        <div class="chart-card">
+          <div
+            class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <span class="chart-label" id="lbl-s2">Sunburst Chart</span>
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn btn-sm btn-outline-secondary btn-filter active"
+                data-vis="vis2" data-label="all fruit types"
+                data-chart="Sunburst Chart">All Types</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis2" data-label="paramecia fruits only"
+                data-chart="Sunburst Chart">Paramecia</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis2" data-label="zoan fruits only"
+                data-chart="Sunburst Chart">Zoan</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis2" data-label="zoan antique fruits only"
+                data-chart="Sunburst Chart">Zoan Antique</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis2" data-label="zoan mythique fruits only"
+                data-chart="Sunburst Chart">Zoan Mythique</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis2" data-label="logia fruits only"
+                data-chart="Sunburst Chart">Logia</button>
+            </div>
           </div>
+          <div class="vis-box" id="vis2"></div>
         </div>
-        <div class="vis-box" id="vis4">All crews by average bounty</div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 05 -->
-    <section id="s5" class="mb-5">
-      <p class="text-uppercase small mb-1" style="color:var(--red)">Arc Progression</p>
-      <div class="d-flex align-items-baseline gap-3 mb-2">
-        <span class="section-num">05</span>
-        <h2 class="h3 fw-bold mb-0">Bounty Trajectory Over Arcs</h2>
-      </div>
-      <p class="text-secondary mb-3" style="max-width:640px">
-        <strong class="text-white">How do bounties grow?</strong> Bounties surge after major story arcs.
-        Tracking changes from Alabasta through Egghead reveals who grew fastest and how events like
-        Marineford, Dressrosa, and Wano acted as inflection points.
-      </p>
-      <div class="bg-dark border border-secondary rounded p-3">
-        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-          <span class="text-secondary text-uppercase small fw-bold" id="lbl-s5">Line Chart</span>
-          <div class="d-flex gap-2 flex-wrap">
-            <button class="btn btn-sm btn-outline-secondary btn-filter active" data-vis="vis5" data-label="All tracked characters" data-chart="Line Chart">All</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis5" data-label="Luffy's bounty trajectory" data-chart="Line Chart">Luffy</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis5" data-label="Zoro's bounty trajectory" data-chart="Line Chart">Zoro</button>
-            <button class="btn btn-sm btn-outline-secondary btn-filter" data-vis="vis5" data-label="Sanji's bounty trajectory" data-chart="Line Chart">Sanji</button>
+      <!-- 03 Haki -->
+      <section id="s3" class="mb-5">
+        <p class="text-uppercase small mb-1"
+          style="color:var(--red);letter-spacing:0.1em">Haki Status &amp;
+          Overlap</p>
+        <div class="d-flex align-items-baseline gap-3 mb-2">
+          <span class="section-num">03</span>
+          <h2 class="h3 fw-bold mb-0">Haki Type Overlap &amp; Bounty</h2>
+        </div>
+        <p class="text-secondary mb-3" style="max-width:640px;line-height:1.7">
+          <strong class="text-white">What is Haki?</strong> <br>A universal power in three forms:
+          <strong class="text-white">Observation</strong> (sensing intent),
+          <strong class="text-white">Armament</strong> (invisible armor), and
+          <strong class="text-white">Conqueror's</strong> (overwhelming weaker wills,
+          a mark of true greatness). Multi-type users consistently hold the highest bounties.
+        </p>
+        <div class="chart-card">
+          <div
+            class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <span class="chart-label" id="lbl-s3">Linked Venn Diagram</span>
           </div>
+          <div class="vis-box" id="vis3"></div>
         </div>
-        <div class="vis-box" id="vis5">All tracked characters</div>
-      </div>
-    </section>
+      </section>
 
-  </main>
+      <!-- 04 Crew Affiliation -->
+      <section id="s4" class="mb-5">
+        <p class="text-uppercase small mb-1"
+          style="color:var(--red);letter-spacing:0.1em">Pirate Fleet</p>
+        <div class="d-flex align-items-baseline gap-3 mb-2">
+          <span class="section-num">04</span>
+          <h2 class="h3 fw-bold mb-0">Crew Power Rankings</h2>
+        </div>
+        <p class="text-secondary mb-3" style="max-width:640px;line-height:1.7">
+          <strong class="text-white">Which crew dominates?</strong><br> Each bar shows a crew's
+          average bounty, the <strong class="text-white">bright portion</strong> represents
+          Devil Fruit users, the <strong class="text-white">dim portion</strong> represents
+          non-Devil Fruit users. Crews are ranked by average threat level.
+        </p>
+        <div class="chart-card">
+          <div
+            class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <span class="chart-label" id="lbl-s4">Crew Bar Chart</span>
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn btn-sm btn-outline-secondary btn-filter active"
+                data-vis="vis4" data-label="all crews shown"
+                data-chart="Crew Bar Chart">All Crews</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis4" data-label="df-heavy crews highlighted"
+                data-chart="Crew Bar Chart">Devil Fruit-Heavy</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis4" data-label="non-df crews highlighted"
+                data-chart="Crew Bar Chart">Non-Devil Fruit</button>
+            </div>
+          </div>
+          <div class="vis-box" id="vis4"></div>
+        </div>
+      </section>
 
-  <script src="visualizations.js"></script>
+      <!-- 05 Trajectory -->
+      <section id="s5" class="mb-5">
+        <p class="text-uppercase small mb-1"
+          style="color:var(--red);letter-spacing:0.1em">Arc Progression</p>
+        <div class="d-flex align-items-baseline gap-3 mb-2">
+          <span class="section-num">05</span>
+          <h2 class="h3 fw-bold mb-0">Bounty Trajectory Over Arcs</h2>
+        </div>
+        <p class="text-secondary mb-3" style="max-width:640px;line-height:1.7">
+          <strong class="text-white">How do bounties grow?</strong> <br>Tracking 10 characters from
+          <strong class="text-white">Alabasta</strong> through <strong class="text-white">Wano</strong>
+          reveals who rose fastest and when. Events like
+          <strong class="text-white">Marineford</strong>, <strong class="text-white">Dressrosa</strong>,
+          and <strong class="text-white">Wano</strong> act as major inflection points.
+        </p>
+        <div class="chart-card">
+          <div
+            class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <span class="chart-label" id="lbl-s5">Multi-Line Chart</span>
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn btn-sm btn-outline-secondary btn-filter active"
+                data-vis="vis5" data-label="All tracked characters"
+                data-chart="Multi-Line Chart">All</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="luffy's bounty trajectory"
+                data-chart="Multi-Line Chart">Luffy</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="zoro's bounty trajectory"
+                data-chart="Multi-Line Chart">Zoro</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="sanji's bounty trajectory"
+                data-chart="Multi-Line Chart">Sanji</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="robin's bounty trajectory"
+                data-chart="Multi-Line Chart">Robin</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="jinbe's bounty trajectory"
+                data-chart="Multi-Line Chart">Jinbe</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="law's bounty trajectory"
+                data-chart="Multi-Line Chart">Law</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="kid's bounty trajectory"
+                data-chart="Multi-Line Chart">Kid</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="blackbeard's bounty trajectory"
+                data-chart="Multi-Line Chart">Blackbeard</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="nami's bounty trajectory"
+                data-chart="Multi-Line Chart">Nami</button>
+              <button class="btn btn-sm btn-outline-secondary btn-filter"
+                data-vis="vis5" data-label="usopp's bounty trajectory"
+                data-chart="Multi-Line Chart">Usopp</button>
+            </div>
+          </div>
+          <div class="vis-box" id="vis5"></div>
+        </div>
+      </section>
 
-</body>
+      <!-- 06 — Bounty Calculator -->
+      <section id="s6" class="mb-5">
+        <p class="text-uppercase small mb-1"
+          style="color:var(--red);letter-spacing:0.1em">Your Profile</p>
+        <div class="d-flex align-items-baseline gap-3 mb-2">
+          <span class="section-num">06</span>
+          <h2 class="h3 fw-bold mb-0">What Would Your Bounty Be?</h2>
+        </div>
+        <p class="text-secondary mb-3" style="max-width:640px;line-height:1.7">
+          <strong class="text-white">Build your pirate profile.</strong> <br>Select
+          your Devil Fruit type and Haki
+          mastery. Your estimated bounty is derived from real characters who
+          share your traits.
+          See where <strong>YOU</strong> rank among the 50 most notorious pirates in the dataset.
+        </p>
+        <div class="chart-card">
+          <div class="row g-3 mb-4 align-items-end">
+            <div class="col-md-4">
+              <label class="text-secondary small text-uppercase mb-1"
+                style="letter-spacing:0.06em">Devil Fruit Type</label>
+              <select id="calc-df" class="form-select form-select-sm"
+                style="background:#1a1a1a;color:#ccc;border-color:#333;">
+                <option value="none">No Devil Fruit</option>
+                <option value="Paramecia">Paramecia</option>
+                <option value="Zoan">Zoan</option>
+                <option value="Logia">Logia</option>
+              </select>
+            </div>
+            <div class="col-md-8">
+              <label class="text-secondary small text-uppercase mb-1"
+                style="letter-spacing:0.06em">Haki Mastery</label>
+              <div class="d-flex gap-4 pt-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="calc-obs"
+                    style="background-color:#1a1a1a;border-color:#555;">
+                  <label class="form-check-label text-secondary small"
+                    for="calc-obs">Observation</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="calc-arm"
+                    style="background-color:#1a1a1a;border-color:#555;">
+                  <label class="form-check-label text-secondary small"
+                    for="calc-arm">Armament</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="calc-con"
+                    style="background-color:#1a1a1a;border-color:#555;">
+                  <label class="form-check-label text-secondary small"
+                    for="calc-con">Conqueror's</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="vis6"><div
+              style="padding:2rem;color:#555;text-align:center;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.06em">Loading
+              character data…</div></div>
+        </div>
+      </section>
+
+    </main>
+
+    <script src="vis-shared.js"></script>
+    <script src="vis1.js"></script>
+    <script src="vis2.js"></script>
+    <script src="vis3.js"></script>
+    <script src="vis4.js"></script>
+    <script src="vis5.js"></script>
+    <script src="vis6.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
