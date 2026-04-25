@@ -106,10 +106,34 @@ function getFruitType(c) {
   const f = c.fruit || c.devil_fruit || c.devilFruit;
   return f ? (f.type || f.category || "Unknown").trim() : null;
 }
+const CREW_NAME_EN = {
+  "The Chapeau de Paille crew": "Straw Hat Pirates",
+  "Armarda du Chapeau de Paille": "Straw Hat Grand Fleet",
+  "Le Roux crew": "Red Hair Pirates",
+  "The Pirates Roger crew": "Roger Pirates",
+  "Big Mom's crew": "Big Mom Pirates",
+  "The Hundred Beasts crew": "Beasts Pirates",
+  "Blackbeard's crew": "Blackbeard Pirates",
+  "The Hearth crew": "Heart Pirates",
+  "The Kid crew": "Kid Pirates",
+  "The Fire Tank crew": "Fire Tank Pirates",
+  "The Sun Pirates crew": "Sun Pirates",
+  "The Foxy crew": "Foxy Pirates",
+  "The Kuja Pirates crew": "Kuja Pirates",
+  "The Caribou crew": "Caribou Pirates",
+  "The Black Cat crew": "Black Cat Pirates",
+  "Thriller Bark": "Thriller Bark Pirates",
+  "The crew of the Rolling": "Rolling Pirates",
+  "The crew of Les Moines Dépravés": "Fallen Monk Pirates",
+  "The crew of the Lion d'Or": "Golden Lion Pirates",
+  "Primate League": "Primate League",
+};
+
 function getCrewName(c) {
   const cr = c.crew || c.pirate_crew;
   if (!cr) return "Unknown";
-  return (cr.name || cr.title || String(cr) || "Unknown").trim();
+  const raw = (cr.name || cr.title || String(cr) || "Unknown").trim();
+  return CREW_NAME_EN[raw] || raw;
 }
 function getHaki(c) {
   return c._haki || { observation: false, armament: false, conquerors: false };
