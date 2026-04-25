@@ -225,19 +225,34 @@ function drawVis4(chars, filter = "all") {
       hideTip();
     });
 
-  // Legend
+  // Legend — top-right, inside the top margin so it's immediately visible
+  const legItems = [
+    ["rgba(255,255,255,0.65)", "DF Users"],
+    ["rgba(255,255,255,0.18)", "Non-DF Members"],
+  ];
+  const legPad = 8;
+  const legItemW = 138;
+  const legH = 22;
+  const legW = legPad + legItemW * 2;
   const legG = svg
     .append("g")
-    .attr("transform", `translate(${m.left}, ${H - 8})`);
-  [
-    ["rgba(255,255,255,0.65)", "DF Users (bright)"],
-    ["rgba(255,255,255,0.18)", "Non-DF Members"],
-  ].forEach(([col, lbl], i) => {
-    const ox = i * 190;
+    .attr("transform", `translate(${W - legW - 8}, 4)`);
+
+  legG
+    .append("rect")
+    .attr("width", legW)
+    .attr("height", legH)
+    .attr("fill", "#1a1a1a")
+    .attr("stroke", C.border)
+    .attr("stroke-width", 1)
+    .attr("rx", 3);
+
+  legItems.forEach(([col, lbl], i) => {
+    const ox = legPad + i * legItemW;
     legG
       .append("rect")
       .attr("x", ox)
-      .attr("y", -8)
+      .attr("y", (legH - 10) / 2)
       .attr("width", 10)
       .attr("height", 10)
       .attr("fill", col)
@@ -245,9 +260,10 @@ function drawVis4(chars, filter = "all") {
     legG
       .append("text")
       .attr("x", ox + 14)
-      .attr("y", 2)
+      .attr("y", legH / 2)
+      .attr("dy", "0.35em")
       .attr("fill", C.textMid)
-      .attr("font-size", 10)
+      .attr("font-size", 11)
       .text(lbl);
   });
 
