@@ -87,7 +87,7 @@ function drawVis5(filter = "all") {
 
   const g = svg.append("g").attr("transform", `translate(${m.left},${m.top})`);
 
-  const maxVal = d3.max(series, (s) => d3.max(s.values)) || 1;
+  const maxVal = d3.max(ARC_DATA, (s) => d3.max(s.values)) || 1;
   const x = d3.scalePoint().domain(ARCS).range([0, iw]);
   const y = d3.scaleLinear().domain([0, maxVal]).range([ih, 0]).nice();
 
