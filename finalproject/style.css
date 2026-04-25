@@ -83,13 +83,9 @@ body {
 
 .stats-bar .col {
   border-right: 1px solid var(--border);
-  transition: background 0.2s;
 }
 .stats-bar .col:last-child {
   border-right: none;
-}
-.stats-bar .col:hover {
-  background: #161616;
 }
 
 /* section layout */
